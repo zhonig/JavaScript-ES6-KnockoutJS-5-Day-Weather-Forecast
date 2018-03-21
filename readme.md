@@ -86,7 +86,7 @@ To run application on local machine, you must do the following:
 		cd C:\Program Files (x86)\Google\Chrome\Application
 		chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
 	5) In Google Chrome browser, copy and paste the following url where %User% is pc user:
-		file:///C:/Users/%User%/Desktop/JavaScript-KnockoutJS-5-Day-Weather-%20Forecast-master/index.html
+		file:///C:/Users/%User%/Desktop/JavaScript-KnockoutJS-5-Day-Weather-Forecast-master/index.html
 		
 Additional Notes:
 
