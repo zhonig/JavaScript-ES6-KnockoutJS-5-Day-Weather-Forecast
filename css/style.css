@@ -1,0 +1,100 @@
+.welcome.container {
+	display: block;
+	margin-top: 15px;
+}
+
+html, body, h1, h2, h3, div, footer, ul, li, a, figure, button, textarea, form, label {
+	padding: 0;
+	border: 0;
+	margin: 0;
+	font: inherit;
+	vertical-align: inherit;
+	text-align: inherit;
+	text-decoration: inherit;
+	color: inherit;
+	background: transparent;
+}
+
+ul {
+	list-style: none;
+}
+
+input, textarea {
+	outline: 0;
+}
+
+img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+html, body {
+	height: 100%;
+}
+
+/* remove 'powered by Google' logo from autocomplete list */
+.pac-container:after {
+	background-image: none;
+	height: 0px;
+}
+
+/* remove marker icons from autocomplete list items*/
+.pac-icon {
+	background-image: none;
+}
+
+.forecast-index-item {
+	min-height: 321px;
+}
+
+.index-item-grid-wrapper {
+	padding-left: 7.5px;
+	padding-right: 7.5px;
+}
+
+.weather-icon-wrapper {
+	background: currentColor;
+	border-radius: 10%;
+}
+
+.weather-info-wrapper {
+	text-align: center;
+}
+
+@media only screen and (min-width: 992px) {
+	
+	.index-item-grid-wrapper.col-md-offset-1 {
+		margin-left: 3.5%;
+	}
+	
+	.index-item-grid-wrapper.col-md-2 {
+		width: 18%;
+	}
+	
+}
+
+@media only screen and (max-width: 992px) {
+	
+	.forecast-index-item {
+		min-height: 0;
+	}
+
+	.index-item-grid-wrapper.col-sm-6 {
+		width: 48%;
+	}
+	
+}
+
+@media only screen and (max-width: 768px) {
+	
+	.index-item-grid-wrapper {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.index-item-grid-wrapper.col-xs-12 {
+		width: 100%;
+	}
+	
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>5 Day Weather Forecast</title>
+		
+		<!-- Font Awesome CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<link rel="stylesheet" href="css/animated_weather_icons.css" />
+		
+		<!-- jQuery JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" defer></script>
+		
+		<!-- Knockout JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" defer></script>
+		
+		<!-- Moment JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" defer></script>
+		
+		<!-- Bootstrap JS -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous" defer></script>
+		
+		<!-- Google Places API Web Service -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVJQVAspaeJnRVXa2A7LtolVsjbjhD-cc&libraries=places"></script>
+		<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>-->
+		
+		<!-- Custom JS -->
+		<script type="text/javascript" src="js/main.js" defer></script>
+	</head>
+	<body>
+		<div class="welcome container">
+			<div class="jumbotron">
+				<h1>Welcome to Zack's 5-Day Weather Forecast Web Page!</h1>
+				<p>
+					<span>To get started,</span>
+					<strong>search for a city, zip, or place below.</strong>
+					<span data-bind="visible: navgeolocationInUse">
+						<strong>To get your current location's weather,</strong>
+						<span>click on the button below.</span>
+					</span>
+				</p>
+				<p data-bind="visible: navgeolocationInUse">
+					<button class="btn btn-primary btn-lg" data-bind="click: getCurrentLocationWeather">Get your current location's weather!</button>
+				</p>
+			</div>
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon"><i class="fa fa-search"></i></div>
+					<input type="text" id="pac-input" class="form-control" placeholder="Show me the weather in... city, zip, or place" data-bind="value: query">
+				</div>
+			</div>
+			<p data-bind="visible: fivedayforeCast().length > 0">
+				<strong data-bind="text: 'Location: ' + query()"></strong>
+			</p>
+		</div>
+		<div class="forecast-main container" data-bind="fivedayforeCast().length > 0">
+			<div class="tab-content">
+				<div class="tab-pane active" id="fivedayforecast">
+					<div class="forecast-index container">
+						<div class="row" data-bind="foreach: fivedayforeCast">
+							<div data-bind="css: 'index-item-grid-wrapper col-lg-2 col-md-2 col-sm-6 col-xs-12' + ($index() === 0 ? ' col-lg-offset-1 col-md-offset-1 col-sm-offset-0 col-xs-offset-0' : $index() === fivedayforeCast().length - 1 ? ' col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0' : '')">
+								<div class="forecast-index-item panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title" data-bind="text: $root.getDay(date)"></h3>
+										<h3 class="panel-title" data-bind="text: $root.getDate(date)"></h3>
+									</div>
+									<div class="panel-body">
+										<div class="weather-icon-wrapper">
+											<div class="icon thunder-storm" data-bind="visible: main === 'Thunderstorm'">
+												<div class="cloud"></div>
+												<div class="lightning">
+													<div class="bolt"></div>
+													<div class="bolt"></div>
+												</div>
+											</div>
+											<div class="icon flurries" data-bind="visible: main === 'Snow'">
+												<div class="cloud"></div>
+												<div class="snow">
+													<div class="flake"></div>
+													<div class="flake"></div>
+												</div>
+											</div>
+											<div class="icon rainy" data-bind="visible: main === 'Rain'">
+												<div class="cloud"></div>
+												<div class="rain"></div>
+											</div>
+											<div class="icon sun-shower" data-bind="visible: main === 'Drizzle'">
+												<div class="cloud"></div>
+												<div class="sun">
+													<div class="rays"></div>
+												</div>
+												<div class="rain"></div>
+											</div>
+											<div class="icon cloudy" data-bind="visible: main === 'Clouds'">
+												<div class="cloud"></div>
+												<div class="cloud"></div>
+											</div>
+											<div class="icon sunny" data-bind="visible: main === 'Clear'">
+												<div class="sun">
+													<div class="rays"></div>
+												</div>
+											</div>
+										</div>
+										<div class="weather-info-wrapper">
+											<h4 class="weather-info-item" data-bind="text: main"></h4>
+											<div class="weather-info-item" data-bind="text: 'High: ' + high + '°F'"></div>
+											<div class="weather-info-item" data-bind="text: 'Low: ' + low + '°F'"></div>
+											<div class="weather-info-item" data-bind="text: 'Humidity: ' + humidity + '%'"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
