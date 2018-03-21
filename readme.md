@@ -32,6 +32,10 @@ Check-list:
 Summary:
 
 The 5-Day Weather Forecast Web Page is a single web page that extracts weather data and displays a 5-day forecast using the OpenWeatherMap API. Additionally, the web page uses Google Places API to extract the latitude and longitude coordinates of the user's current/specified location. The weather data is then obtained using the user's coordinates.
+
+Live Website:
+
+http://zackhonig.com/projects/5-Day-Weather-Forecast/
 		
 Languages:
 
